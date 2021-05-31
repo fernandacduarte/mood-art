@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Card from './Card'
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
-import { arts } from './arts.js'
+import App from './containers/App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Card name={arts[0].name} email={arts[0].email} imgfile={arts[0].artfilepath} />
-    <Card name={arts[1].name} email={arts[1].email} imgfile={arts[1].artfilepath} />
-    <Card name={arts[2].name} email={arts[2].email} imgfile={arts[2].artfilepath} />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
