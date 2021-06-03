@@ -8,7 +8,7 @@ const Card = ({ mood, artist, email, filepath }) => {
             <img alt='Art for your mood' src={`${ filepath }`} width="200" height="200"/> 
             <div>
                 <h2>{mood}</h2>
-                <p>{artist}</p>
+                {/* <p>{artist}</p> */}
                 {/* <h4>{artist}</h4> */}
                 {/* <p>{email}</p> */}
             </div>

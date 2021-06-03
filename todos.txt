@@ -1,0 +1,7 @@
+Todos:
+
+-- Trocar Card por Flip Card
+-- Colocar frases atrás do Flip Card
+-- usar API  pexels
+-- Toda vez  que o site carregar, selecionar randomicamente 10 moods diferentes, com 5 fotos para cada mood e arrumar eles aleatoriamente na pagina.
+Escolher frases aleatoriamente que tenham a ver com cada mood.

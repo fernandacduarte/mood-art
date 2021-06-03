@@ -11,6 +11,9 @@
 # production
 /build
 
+# auxiliar files
+./todos.txt
+
 # misc
 .DS_Store
 .env.local
