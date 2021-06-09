@@ -1,24 +1,30 @@
 import React from 'react'
 // import Front from './Front'
 // import Back from './Back'
+import styled from 'styled-components'
 import './FlipCard.scss'
 
+const StyledCard = styled.div`
+    height: ${(props) => props.height};
+    // height: 500px;
+`;
+
 const FlipCard = (props) => {
-    //debug
-    // console.log(props.isFlipped);
-    
-    // const cardClass = "card-container fl w-100 w-third-ns pa2" + (props.isFlipped ? " flipped" : "");
-    const cardClass = "card fl " + (props.isFlipped ? " flipped" : "");
+    const cardClass = "card-container fl w-100 w-third-ns pa2";
+    const cardHeight = `${props.art.height}px`;
+    console.log(cardHeight);
+    // const cardClass = "card fl " + (props.isFlipped ? " flipped" : "");
     return(
         // <div className="card-container mw9 center ph3-ns">
         // <div className="card-container center fl w-28 pa3">
         // <div className="card-container mw9 center ph3-ns">
-        <div className="card-container">
+        <div className="out-card-container">
             {/* <div className="cf ph2-ns"> */}
-                <div onMouseEnter={props.onFlip} onMouseLeave={props.onFlip} className={cardClass}>
-                    <Front mood={props.mood}/>
+                {/* <div onMouseEnter={props.onFlip} onMouseLeave={props.onFlip} className={cardClass} style={{height: '300 px'}}> */}
+                <StyledCard height={cardHeight} className={cardClass} >
+                    <Front art={props.art}/>
                     <Back />
-                </div>
+                </StyledCard>
             {/* </div> */}
         </div>
     );
@@ -27,7 +33,7 @@ const FlipCard = (props) => {
 const Front = (props) => {
     return (
         <div className="front">
-            <ImageArea mood={props.mood}/>
+            <ImageArea art={props.art} />
             <MainArea />
         </div>
     )
@@ -43,15 +49,17 @@ const Back = () => {
 }
 
 const ImageArea = (props) => {
+    console.log(props.art.filepath);    
     return (
         <div className="main-area">
             <div className="image-container">
-                <img className="image-container card-image" src="https://78.media.tumblr.com/d98fb931adb117c70f0dbced9e947520/tumblr_pe582mbWip1tlgv32o1_1280.png"></img>
+                {/* <img className="image-container card-image" src="https://78.media.tumblr.com/d98fb931adb117c70f0dbced9e947520/tumblr_pe582mbWip1tlgv32o1_1280.png"></img> */}
+                <img className="image-container card-image" src={`${ props.art.filepath }`}></img>
                 {/* <h1 className="title">Happy</h1> */}
             </div>
             {/* <h1 className="blog-content"> */}
             <h1>
-                {props.mood}
+                {props.art.mood}
             </h1>
         </div>
     )

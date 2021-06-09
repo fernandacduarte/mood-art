@@ -1,5 +1,9 @@
 Todos:
 
+-- Construir grid de cards do zero, começando pela card simples do tachyons e incrementando o codigo para fazer o flip
+    x Fazer funcionar o hover
+    - incluir partes de front e back --> PROX PASSO AQUI
+
 -- Trocar Card por Flip Card
 -- Colocar frases atrás do Flip Card
 -- usar API  pexels

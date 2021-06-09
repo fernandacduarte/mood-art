@@ -13,16 +13,43 @@ class App extends Component  {
         this.state = {
             arts: arts,
             searchField: '',
-            // flipped: false
+            moodQuotes: []
         }
     }
 
-    // Caso quisessemos pegar informações guardadas em um servidor via API
-    // componentDidMount() {
-    //     fetch('url api')
-    //     .then(response => response.json())
-    //     .then(users => this.setState({arts: users}))
-    // }
+    updateArtsQuotes = (responseQuotes) => {
+        const currentArtData = this.state.arts;
+        const updatedArts = currentArtData.map( (artData) =>  {
+            let newArtData = { ...artData };
+            const mood = newArtData.mood;
+            let foundQuote = false;
+
+            for (let i = 0; i < responseQuotes.length; i++) {
+                const quote = responseQuotes[i];
+                if (quote.text.toLowerCase().includes(mood)) {
+                    foundQuote = true;
+                    newArtData.quote = '"' + quote.text + '"';
+                    break;
+                }
+            }
+
+            if (!foundQuote) {
+                newArtData.quote = "Error loading quote :x";
+            }
+
+            return newArtData;
+        });
+
+        // console.log(updatedArts);
+        this.setState({arts: updatedArts});
+    }
+    
+    componentDidMount() {
+        var allQuotes = [];
+        fetch("https://type.fit/api/quotes")
+        .then(response => response.json())
+        .then((responseJson) => this.updateArtsQuotes(responseJson));
+    }
 
     onSearchChange = (event) => { // Use the arrow format here so 'this' refers to App
         this.setState({ searchField: event.target.value });
@@ -35,9 +62,10 @@ class App extends Component  {
     render() {
         const { arts, searchField } = this.state;
         const filteredArts = arts.filter(art => {
-            return art.mood.toLowerCase().includes(searchField.toLowerCase());
+            // return art.mood.toLowerCase().includes(searchField.toLowerCase());
+            return art.keywords.toLowerCase().includes(searchField.toLowerCase());
         });
-        console.log(filteredArts);
+        // console.log(filteredArts);
         if (arts.length === 0) {
             return <h1>Loading...</h1>
         }
