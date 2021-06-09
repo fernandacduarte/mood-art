@@ -34,8 +34,7 @@ const Card = (props) => {
                 </div>
                 <div className="flip-card-back">
                     <h1>{props.art.mood}</h1>
-                    <p>Architect & Engineer</p>
-                    <p>We love that guy</p>
+                    <p>{props.art.quote}</p>
                 </div>
             </div>
         </div>

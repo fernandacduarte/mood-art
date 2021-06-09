@@ -13,7 +13,6 @@ class App extends Component  {
         this.state = {
             arts: arts,
             searchField: '',
-            moodQuotes: []
         }
     }
 
@@ -23,17 +22,31 @@ class App extends Component  {
             let newArtData = { ...artData };
             const mood = newArtData.mood;
             let foundQuote = false;
+            let quotePos = -1;
 
             for (let i = 0; i < responseQuotes.length; i++) {
                 const quote = responseQuotes[i];
                 if (quote.text.toLowerCase().includes(mood)) {
                     foundQuote = true;
                     newArtData.quote = '"' + quote.text + '"';
+                    quotePos = i;
                     break;
                 }
             }
 
-            if (!foundQuote) {
+            //debug
+            // console.log(mood + ' ' + responseQuotes[quotePos].text);
+            console.log(mood + ' - quotePos =' + quotePos);
+            //debug
+
+            if (foundQuote) {
+                const removedElt = responseQuotes.splice(quotePos, 1);
+
+                //debug
+                console.log(mood + ' - deleted quote text =' + removedElt[0].text);
+                //debug
+
+            } else {
                 newArtData.quote = "Error loading quote :x";
             }
 
@@ -43,21 +56,16 @@ class App extends Component  {
         // console.log(updatedArts);
         this.setState({arts: updatedArts});
     }
-    
-    componentDidMount() {
-        var allQuotes = [];
-        fetch("https://type.fit/api/quotes")
-        .then(response => response.json())
-        .then((responseJson) => this.updateArtsQuotes(responseJson));
-    }
 
     onSearchChange = (event) => { // Use the arrow format here so 'this' refers to App
         this.setState({ searchField: event.target.value });
     }
-
-    // onFlip = () => {
-    //     this.setState({ flipped: !this.state.flipped });
-    // }
+    
+    componentDidMount() {
+        fetch("https://type.fit/api/quotes")
+        .then(response => response.json())
+        .then((responseJson) => this.updateArtsQuotes(responseJson));
+    }
 
     render() {
         const { arts, searchField } = this.state;
