@@ -8,17 +8,17 @@
 
 body {
     /* background: #83c5be; */
-    background: linear-gradient(to left, #c6e1eb 0%, #83c5be 100%);
+    background: linear-gradient(to left, #c6e1eb 0%, #ebf7f6 100%);
 }
 
 h1 {
     font-family: 'St Marie Thin';
     /* font-size: 5rem; */
-    color: #02535a;
+    color: #406769;
 }
 
 h3 {
     font-family: 'St Marie Thin';
     /* font-size: 5rem; */
-    color: #3a5557;
+    color: #3d4d4e;
 }

@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import SearchBox from '../components/SearchBox'
 import CardsList from '../components/CardsList'
 import Scroll from '../components/Scroll'
-import FlipCard from '../components/FlipCard'
 import { arts } from '../components/arts'
 import './App.css'
-// import '../components/FlipTest.scss'
+import axios from 'axios';
 
 class App extends Component  {
     constructor() {
@@ -20,32 +19,24 @@ class App extends Component  {
         const currentArtData = this.state.arts;
         const updatedArts = currentArtData.map( (artData) =>  {
             let newArtData = { ...artData };
-            const mood = newArtData.mood;
+            const moods = newArtData.keywords.split(" ");
             let foundQuote = false;
             let quotePos = -1;
 
-            for (let i = 0; i < responseQuotes.length; i++) {
-                const quote = responseQuotes[i];
-                if (quote.text.toLowerCase().includes(mood)) {
-                    foundQuote = true;
-                    newArtData.quote = '"' + quote.text + '"';
-                    quotePos = i;
-                    break;
+            for (let mood of moods) {
+                for (let i = 0; i < responseQuotes.length; i++) {
+                    const quote = responseQuotes[i];
+                    if (quote.text.toLowerCase().includes(mood)) {
+                        foundQuote = true;
+                        newArtData.quote = '"' + quote.text + '"';
+                        quotePos = i;
+                        break;
+                    }
                 }
             }
 
-            //debug
-            // console.log(mood + ' ' + responseQuotes[quotePos].text);
-            console.log(mood + ' - quotePos =' + quotePos);
-            //debug
-
             if (foundQuote) {
                 const removedElt = responseQuotes.splice(quotePos, 1);
-
-                //debug
-                console.log(mood + ' - deleted quote text =' + removedElt[0].text);
-                //debug
-
             } else {
                 newArtData.quote = "Error loading quote :x";
             }
@@ -53,7 +44,6 @@ class App extends Component  {
             return newArtData;
         });
 
-        // console.log(updatedArts);
         this.setState({arts: updatedArts});
     }
 
@@ -62,15 +52,24 @@ class App extends Component  {
     }
     
     componentDidMount() {
-        fetch("https://type.fit/api/quotes")
-        .then(response => response.json())
-        .then((responseJson) => this.updateArtsQuotes(responseJson));
+        /* see: https://www.geeksforgeeks.org/difference-between-fetch-and-axios-js-for-making-http-requests/ */
+        /* http request using fetch */
+        // fetch("https://type.fit/api/quotes")
+        // .then(response => response.json())
+        // .then((responseJson) => this.updateArtsQuotes(responseJson));
+
+        /* http request using axios */
+        // const response = await axios.get('https://type.fit/api/quotes'); //await: the program waits here until axios.get() is completed
+        // const coinIds = response.data.slice(0, COIN_COUNT).map(coin => coin.id);
+
+        axios.get('https://type.fit/api/quotes')
+             .then((response) => response.data)
+             .then((responseData) => this.updateArtsQuotes(responseData));
     }
 
     render() {
         const { arts, searchField } = this.state;
         const filteredArts = arts.filter(art => {
-            // return art.mood.toLowerCase().includes(searchField.toLowerCase());
             return art.keywords.toLowerCase().includes(searchField.toLowerCase());
         });
         // console.log(filteredArts);
