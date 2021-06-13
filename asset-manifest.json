@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mood-art/static/css/main.546942cf.chunk.css",
-    "main.js": "/mood-art/static/js/main.c71949dc.chunk.js",
-    "main.js.map": "/mood-art/static/js/main.c71949dc.chunk.js.map",
+    "main.js": "/mood-art/static/js/main.2ee385d2.chunk.js",
+    "main.js.map": "/mood-art/static/js/main.2ee385d2.chunk.js.map",
     "runtime-main.js": "/mood-art/static/js/runtime-main.a6ec7915.js",
     "runtime-main.js.map": "/mood-art/static/js/runtime-main.a6ec7915.js.map",
     "static/css/2.c1f4f5f4.chunk.css": "/mood-art/static/css/2.c1f4f5f4.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.c1f4f5f4.chunk.css",
     "static/js/2.83fb03da.chunk.js",
     "static/css/main.546942cf.chunk.css",
-    "static/js/main.c71949dc.chunk.js"
+    "static/js/main.2ee385d2.chunk.js"
   ]
 }
