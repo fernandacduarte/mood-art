@@ -3,7 +3,8 @@ export const arts = [
         "id": 1,
         "mood": "alone",
         "keywords": "unparalleled solely unique solitary lonely lone unequaled unequalled unaccompanied solo entirely alone only exclusively",
-        "filepath": "/assets/images/alone0.jpeg",
+        // "filepath": "/assets/images/alone0.jpeg",
+        "filepath": "./mood-art/assets/images/alone0.jpeg",
         "quote": '',
     },
     {
