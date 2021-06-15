@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SearchBox from '../components/SearchBox'
 import CardsList from '../components/CardsList'
 import Scroll from '../components/Scroll'
+import ErrorBoundary from '../components/ErrorBoundary'
 import { arts } from '../components/arts'
 import './App.css'
 import axios from 'axios';
@@ -82,7 +83,9 @@ class App extends Component  {
                     <h3 className='f3'>Search for a mood. Pick a card. Get some inspiration.</h3>
                     <SearchBox searchChange={this.onSearchChange}/>
                     <Scroll>
-                        <CardsList arts={filteredArts}/>
+                        <ErrorBoundary>
+                            <CardsList arts={filteredArts}/>
+                        </ErrorBoundary>
                     </Scroll>
                 </div>
             );
